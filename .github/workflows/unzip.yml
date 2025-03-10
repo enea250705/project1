@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Unzip File
+
+on:
+  push:
+    paths:
+      - 'your-file.zip' # Trigger action only on the .zip file
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Unzip file
+        run: |
+          unzip DevPortofolioHub.zip -d /path/to/extract/folder/
+          
+      - name: Commit and push extracted files
+        run: |
+          git add .
+          git commit -m "Unzipped files"
+          git push
